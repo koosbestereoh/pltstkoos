@@ -9,7 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-task: AzureResourceManagerTemplateDeployment@3
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
   inputs:
     deploymentScope: 'Resource Group'
     azureResourceManagerConnection: 'pltstkoosconn'
