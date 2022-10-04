@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'pltstkoosconn'
+    subscriptionId: '26385486-5fc3-4731-ad08-e553bd1ac4ba'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'pltstkoosrg'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/koosbestereoh/pltstkoos/main/azuredeploy.json'
+    overrideParameters: '-projectName pltstkoos'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipeTemplate'
